@@ -1,19 +1,12 @@
 import { json } from "@remix-run/node";
-import {
-  Link,
-  Outlet,
-  useLoaderData,
-} from "@remix-run/react";
+import { Link, Outlet, useLoaderData } from "@remix-run/react";
 
-// import { getAppointments } from "../../models/appointment.server";
 import { requireUserId } from "~/session.server";
 import { useUser } from "~/utils";
 import { getNoteListItems } from "~/models/note.server";
-
-
-// export async function loader() {
-    // return json({ appointments: await getAppointments() });
-// }
+import AppointmentCardPreview from "../../shared/components/AppointmentCardPreview";
+import CardList from "../../shared/components/CardList";
+import Container from "../../shared/components/Container";
 
 export async function loader({ request }) {
   const userId = await requireUserId(request);
@@ -21,27 +14,22 @@ export async function loader({ request }) {
   return json({ noteListItems });
 }
 
-
 export default function Appointments() {
   const data = useLoaderData();
   const user = useUser();
 
-    return (
-        <div>
-            <h1>My Appointments</h1>
-        <p>Here we will how a list of appointments</p>
-        <ul>
+  return (
+    <Container>
 
-              {data.noteListItems.map((note) => (
-              <li key={note.id}>
-                <Link
-                  to={note.id}
-                >
-                  {note.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-    )
+      <h1>Appointments List</h1>
+      <p>Click in an appointment to see details</p>
+      <CardList>
+        {data.noteListItems.map((note) => (
+          <AppointmentCardPreview>
+            <Link to={note.id}>{note.title}</Link>
+          </AppointmentCardPreview>
+        ))}
+      </CardList>
+    </Container>
+  );
 }

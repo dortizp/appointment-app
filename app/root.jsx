@@ -39,9 +39,7 @@ export default function App() {
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
-         <div>
-            This can be replaced by a Footer component
-        </div>
+        <div>Made using Remix</div>
       </body>
     </html>
   );
