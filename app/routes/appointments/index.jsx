@@ -20,13 +20,11 @@ export default function Appointments() {
 
   return (
     <Container>
-
-        <p className="text-3xl font-bold">
-        Appointments List</p>
+      <p className="text-3xl font-bold">Appointments List</p>
       <p className="text-2xl">Click in an appointment to see details</p>
       <CardList>
         {data.noteListItems.map((note) => (
-          <AppointmentCardPreview>
+          <AppointmentCardPreview key={note.id}>
             <Link to={note.id}>{note.title}</Link>
           </AppointmentCardPreview>
         ))}

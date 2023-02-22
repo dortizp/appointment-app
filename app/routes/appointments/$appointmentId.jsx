@@ -26,15 +26,12 @@ export default function Appointment() {
   const data = useLoaderData();
   return (
     <Container>
-
       <Link to="/appointments">
-        <span>
-          -- Back to appointment list
-          </span>
+        <span>-- Back to appointment list</span>
       </Link>
       <AppointmentCard>
         <p className="text-3xl font-bold">Appointment</p>
-        <p className="text-xl">Appointment details:</p>
+        <p className="text-xl">Appointment details for {data.note.title}</p>
 
         {data ? <p>{data.note.body}</p> : <p>no notes</p>}
       </AppointmentCard>

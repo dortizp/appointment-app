@@ -39,7 +39,7 @@ export default function App() {
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
-        <div className="text-xl bold">Made using Remix</div>
+        <div className="bold text-xl">Made using Remix</div>
       </body>
     </html>
   );
