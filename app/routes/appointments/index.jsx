@@ -21,8 +21,9 @@ export default function Appointments() {
   return (
     <Container>
 
-      <h1>Appointments List</h1>
-      <p>Click in an appointment to see details</p>
+        <p className="text-3xl font-bold">
+        Appointments List</p>
+      <p className="text-2xl">Click in an appointment to see details</p>
       <CardList>
         {data.noteListItems.map((note) => (
           <AppointmentCardPreview>

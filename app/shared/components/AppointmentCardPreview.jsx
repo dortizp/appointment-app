@@ -5,6 +5,7 @@ const StyledContainer = styled.div`
   border-radius: 8px;
   padding: 20px;
   width: 300px;
+  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
 `;
 export default function AppointmentCardPreview(props) {
   return <StyledContainer>{props.children}</StyledContainer>;
