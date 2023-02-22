@@ -1,10 +1,13 @@
 // import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
 
+import { Link, useLoaderData } from "@remix-run/react";
 import { deleteNote, getNote } from "~/models/note.server";
 import { requireUserId } from "~/session.server";
+
+import AppointmentCard from "../../shared/components/AppointmentCard";
+import Container from "../../shared/components/Container";
 
 export async function loader({ request, params }) {
   // return json({id: params.appointmentId})
@@ -22,13 +25,19 @@ export async function loader({ request, params }) {
 export default function Appointment() {
   const data = useLoaderData();
   return (
-    <div>
-      <h1>Appointment</h1>
-      <p>Here we will show an appointment</p>
+    <Container>
 
-      {data ? <p>{data.note.body}</p> : <p>no notes</p>}
-      {/* <p>This appointment has id {data.note.id}</p> */}
-      {/* <p>detail: {data.note.body}</p> */}
-    </div>
+      <Link to="/appointments">
+        <span>
+          -- Back to appointment list
+          </span>
+      </Link>
+      <AppointmentCard>
+        <p className="text-3xl font-bold">Appointment</p>
+        <p className="text-xl">Appointment details:</p>
+
+        {data ? <p>{data.note.body}</p> : <p>no notes</p>}
+      </AppointmentCard>
+    </Container>
   );
 }
