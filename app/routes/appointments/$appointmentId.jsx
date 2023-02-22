@@ -9,7 +9,7 @@ import { requireUserId } from "~/session.server";
 export async function loader ({request, params}) {
     // return json({id: params.appointmentId})
   const userId = await requireUserId(request);
-  invariant(params.noteId, "noteId not found");
+  invariant(params.appointmentId, "noteId not found");
 
   const note = await getNote({ userId, id: params.noteId });
   if (!note) {
