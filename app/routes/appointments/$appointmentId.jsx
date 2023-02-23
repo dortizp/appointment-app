@@ -14,7 +14,7 @@ export async function loader({ request, params }) {
   const userId = await requireUserId(request);
   invariant(params.appointmentId, "noteId not found");
 
-  const note = await getNote({ userId, id: params.noteId });
+  const note = await getNote({ userId, id: params.appointmentId});
   if (!note) {
     throw new Response("Not Found", { status: 404 });
   }
@@ -24,6 +24,7 @@ export async function loader({ request, params }) {
 
 export default function Appointment() {
   const data = useLoaderData();
+  console.log(data)
   return (
     <Container>
       <Link to="/appointments">
@@ -33,7 +34,8 @@ export default function Appointment() {
         <p className="text-3xl font-bold">Appointment</p>
         <p className="text-xl">Appointment details for {data.note.title}</p>
 
-        {data ? <p>{data.note.body}</p> : <p>no notes</p>}
+        {data.note ? <p>{data.note.body}</p> : <p>no notes</p>}
+        {data.note ? <p>available: {data.note.available ? "si" : "no"}</p> : <p>no notes</p>}
       </AppointmentCard>
     </Container>
   );

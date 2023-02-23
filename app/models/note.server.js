@@ -2,8 +2,8 @@ import { prisma } from "~/db.server";
 
 export function getNote({ id, userId }) {
   return prisma.note.findFirst({
-    select: { id: true, body: true, title: true },
     where: { id, userId },
+    select: { id: true, body: true, title: true , available: true},
   });
 }
 
@@ -15,11 +15,12 @@ export function getNoteListItems({ userId }) {
   });
 }
 
-export function createNote({ body, title, userId }) {
+export function createNote({ body, title, available, userId }) {
   return prisma.note.create({
     data: {
       title,
       body,
+      available,
       user: {
         connect: {
           id: userId,

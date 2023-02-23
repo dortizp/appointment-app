@@ -29,6 +29,7 @@ model Note {
   id    String @id @default(cuid())
   title String
   body  String
+  available Boolean
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
